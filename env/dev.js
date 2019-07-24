@@ -3,7 +3,6 @@
 "use strict";
 
 module.exports = {
-    "port" : 8080,
     "sql": {
         "user": "root",
         "password": "paytm@197",
