@@ -2,6 +2,4 @@
 /*jshint multistr: true ,node: true*/
 "use strict";
 
-
-require('./auth');
-require('./ride');
+require('./routes');
