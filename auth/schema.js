@@ -2,5 +2,5 @@
 /*jshint multistr: true ,node: true*/
 "use strict";
 
-
-require('./auth');
+let schemas = {};
+module.exports = schemas;
