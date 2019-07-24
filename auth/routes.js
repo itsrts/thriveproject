@@ -10,3 +10,10 @@ require('./login.js').listen({
     schema: schema['POST_/login'],
     validator: null
 });
+
+require('./me.js').listen({
+    method : 'GET',
+    route: '/me',
+    schema: schema['GET_/me'],
+    validator: null
+});
