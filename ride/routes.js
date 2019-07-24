@@ -17,3 +17,10 @@ require('./updateRide.js').listen({
     schema: schema['PUT_/ride'],
     validator: null
 });
+
+require('./listRides.js').listen({
+    method : 'GET',
+    route: '/rides',
+    schema: schema['GET_/rides'],
+    validator: null
+});
