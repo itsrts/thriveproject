@@ -19,6 +19,8 @@ class Users extends BaseModel {
         if(result && result.length > 0) {
             let user = result[0];
             delete user.pwd;
+            delete user.created_at;
+            delete user.updated_at;
             return user;
         }
         throw 'Not Authorised';

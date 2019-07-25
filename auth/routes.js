@@ -3,6 +3,7 @@
 "use strict";
 
 let schema = require('./schema');
+let util = require('../util');
 
 require('./login.js').listen({
     method : 'POST',
@@ -15,5 +16,5 @@ require('./me.js').listen({
     method : 'GET',
     route: '/me',
     schema: schema['GET_/me'],
-    validator: null
+    validator: util.validateUser
 });

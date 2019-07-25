@@ -4,6 +4,7 @@
 
 const ServerRequest = require('api-ext').ServerRequest;
 
+let rides = require('../model/rides').getInstance();
 class AddRide extends ServerRequest {
 
     /**
@@ -18,13 +19,14 @@ class AddRide extends ServerRequest {
         });
     }
 
-    process(data, request, response) {
-        return "Hello !! This is a sample response from class 'AddRide'";
+    async process(data, request, response) {
+        await rides.addNewRide(data.user.id);
+        return "Ride Added";
     }
 
     makeResponse(data, result, request, response) {
         return {
-            "response" : result
+            "message" : result
         };
     }
 }
