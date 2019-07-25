@@ -9,7 +9,10 @@ module.exports = schemas;
 schemas['POST_/login'] = {
     $id: "POST_/login", type: "object", properties: {
         headers: { type: "object" },
-        body: { type: "object" },
+        body: { type: "object", properties: {
+            username : { type : "string" },
+            password : { type : "string" },
+        }, required: ["username", "password"] },
         queryparams: { type: "object" },
         pathparams: { type: "object" },
         cookies: { type: "object" },

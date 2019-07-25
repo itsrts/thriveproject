@@ -18,7 +18,7 @@ class AddRide extends ServerRequest {
         });
     }
 
-    process(request, data, response) {
+    process(data, request, response) {
         return "Hello !! This is a sample response from class 'AddRide'";
     }
 
