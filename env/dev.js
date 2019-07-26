@@ -7,6 +7,7 @@ module.exports = {
         "user": "root",
         "password": "paytm@197",
         "host": "localhost",
-        "database": "insurance_db"
+        "database": "insurance_db",
+        "poolSize": 10
     }
 }

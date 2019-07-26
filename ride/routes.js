@@ -14,7 +14,7 @@ require('./addRide.js').listen({
 
 require('./updateRide.js').listen({
     method : 'PUT',
-    route: '/ride',
+    route: '/ride/:id/confirm',
     schema: schema['PUT_/ride'],
     validator: util.validateUser
 });

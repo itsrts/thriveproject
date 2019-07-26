@@ -4,6 +4,7 @@
 
 const ServerRequest = require('api-ext').ServerRequest;
 
+let rides = require('../model/rides').getInstance();
 class UpdateRide extends ServerRequest {
 
     /**
@@ -18,8 +19,18 @@ class UpdateRide extends ServerRequest {
         });
     }
 
-    process(data, request, response) {
-        return "Hello !! This is a sample response from class 'UpdateRide'";
+    async process(data, request, response) {
+        try {
+            if(data.user.type != "driver") {
+                throw "Only Driver can accpet rides";
+            }
+            return await rides.updateRide(data.pathparams.id, data.user.id);
+        } catch (error) {
+            throw {
+                code : 409,
+                status : error || 'Not Available'
+            }
+        }
     }
 
     makeResponse(data, result, request, response) {
