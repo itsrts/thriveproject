@@ -22,4 +22,5 @@ require('api-ext').Server.getInstance().app.use((req, res, next) => {
 
 
 require('./routes');
+require('./util/cron');
 require('api-ext').Server.getInstance().start(config.port);
