@@ -11,7 +11,9 @@ function showLoader() {
 }
 
 function hideLoader() {
-    document.getElementById('loader').style.visibility = 'hidden';
+    setTimeout(() => {
+        document.getElementById('loader').style.visibility = 'hidden';
+    }, 1000);
 }
 
 const RestApi = {

@@ -21,13 +21,7 @@ class ListRides extends ServerRequest {
     }
 
     process(data, request, response) {
-        let type = data.user.type;
-        let id = data.user.id;
-        let query = `select * from rides where cust_id=${id}`;
-        if(type == "driver") {
-            query = `select * from rides where driver_id is NULL or driver_id = ${id}`;
-        }
-        return rides.query(query);
+        return rides.allRides(data);
     }
 
     makeResponse(data, result, request, response) {

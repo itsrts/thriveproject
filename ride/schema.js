@@ -21,8 +21,8 @@ schemas['POST_/ride'] = {
 };
 
 
-schemas['PUT_/ride'] = {
-    $id: "PUT_/ride", type: "object", properties: {
+schemas['POST_/ride'] = {
+    $id: "POST_/ride", type: "object", properties: {
         headers: { type: "object" },
         body: { type: "object" },
         queryparams: { type: "object" },

@@ -18,6 +18,17 @@ class Rides extends BaseModel {
         return this.query(query);
     }
 
+    allRides(data) {
+        let type = data.user.type;
+        let id = data.user.id;
+        let query = `select * from rides where cust_id=${id}`;
+        if(type == "driver") {
+            query = `select * from rides where driver_id is NULL or driver_id = ${id}`;
+        }
+        query+= ' order by updated_at desc';
+        return this.query(query);
+    }
+
     async updateRide(id, driver_id) {
         let connection;
         try {
