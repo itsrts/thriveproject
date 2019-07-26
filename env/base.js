@@ -4,6 +4,7 @@
 
 module.exports = {
     "port" : 8080,
+    "cors" : true,
     "sql": {
         "user": "root",
         "password": "paytm@197",

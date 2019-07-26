@@ -1,0 +1,73 @@
+    /* Coded with love by Mutiullah Samim */
+
+    /* .jumbotron {
+        background: url('https://c-parity.com/wp-content/uploads/2018/01/analytics-final-background-1-1.jpg') fixed center no-repeat;
+        background-size: cover;
+        filter: blur(5px);
+        -webkit-filter: blur(5px);
+    } */
+    .fullscreen {
+        height: 100vh !important;
+    }
+    .fullscreen::before {
+        background: url('https://c-parity.com/wp-content/uploads/2018/01/analytics-final-background-1-1.jpg') no-repeat center center fixed;
+        content: '';
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        position:absolute; 
+        top: 0;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        -webkit-filter: blur(3px);
+        -moz-filter: blur(3px);
+        -o-filter: blur(3px);
+        -ms-filter: blur(3px);
+        filter: blur(3px);
+      }
+
+    .user_card {
+        height: 400px;
+        width: 350px;
+        margin: 150px auto 0;
+        text-align: center;
+        background: #efefef;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        padding: 10px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        border-radius: 5px;
+
+    }
+    .login_btn {
+        width: 100%;
+        background: #c0392b !important;
+        color: white !important;
+    }
+    .login_btn:focus {
+        box-shadow: none !important;
+        outline: 0px !important;
+    }
+    .login_container {
+        padding: 0 2rem;
+    }
+    .input-group-text {
+        background: #c0392b !important;
+        color: white !important;
+        border: 0 !important;
+        border-radius: 0.25rem 0 0 0.25rem !important;
+    }
+    .input_user,
+    .input_pass:focus {
+        box-shadow: none !important;
+        outline: 0px !important;
+    }
+    .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+        background-color: #c0392b !important;
+    }

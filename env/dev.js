@@ -3,6 +3,7 @@
 "use strict";
 
 module.exports = {
+    "cors" : true,
     "sql": {
         "user": "root",
         "password": "paytm@197",
