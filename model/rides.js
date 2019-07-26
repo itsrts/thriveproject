@@ -42,6 +42,10 @@ class Rides extends BaseModel {
             if(results.status != "pending") {
                 throw 'Not Available';
             }
+            results = await connection.query(`select * from rides where driver_id=? and status='active'`, driver_id);
+            if(results && results.length > 0) {
+                throw 'Please complete your existing ride first';
+            }
             results = await connection.query(`update rides set status='active', driver_id=? where id=?`, [driver_id, id]);
             await connection.commit();
             results = await this.findById(id);

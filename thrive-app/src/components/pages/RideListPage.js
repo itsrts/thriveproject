@@ -54,14 +54,14 @@ class RideListPage extends Component {
 				console.log(data);
 				this.refreshList();
 			}).catch(error => {
-
+				console.log(error);
 			});
 	}
 
 	render() {
 		let ridesHTML = this.state.rides.map((ride, index) => {
 			if(this.state[ride.status] === false) return undefined;
-			return <RideComponent key={ride.id} ride={ride} />
+			return <RideComponent key={ride.id+ride.updated_at} ride={ride} />
 		});
 		if(ridesHTML.length===0) {
 			ridesHTML = 'No Rides';

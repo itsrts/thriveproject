@@ -29,6 +29,9 @@ const RestApi = {
                 SessionManager.logout();
                 window.location.href = "./login";
             }
+            if(result.status !== 200) {
+                throw result.json();
+            }
             hideLoader();
             result = result.json();
             if(useCache) {
@@ -54,6 +57,13 @@ const RestApi = {
             body: JSON.stringify(data),
             credentials: "include"
         }).then(result => {
+            if(result.status === 401) {
+                SessionManager.logout();
+                window.location.href = "./login";
+            }
+            if(result.status !== 200) {
+                throw result.json();
+            }
             hideLoader();
             result = result.json();
             if(useCache) {

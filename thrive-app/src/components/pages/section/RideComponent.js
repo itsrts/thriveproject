@@ -27,7 +27,7 @@ class RideComponent extends Component {
 				ride : ride
 			});
 		}).catch(error => {
-			
+			console.log(error);
 		});
 	}
 
