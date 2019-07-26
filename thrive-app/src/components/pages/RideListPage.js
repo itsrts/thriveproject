@@ -50,6 +50,9 @@ class RideListPage extends Component {
 		let ridesHTML = this.state.rides.map((ride, index) => {
 			return <RideComponent key={ride.id} ride={ride} />
 		});
+		if(ridesHTML.length===0) {
+			ridesHTML = 'No Rides';
+		}
 		let user = SessionManager.getUser();
 		return (
 			<React.Fragment>
@@ -60,7 +63,7 @@ class RideListPage extends Component {
 					<MDBCol md="6" lg="12" className="mb-5 mt-1">
 					{
 					user.type==="driver" ?
-					<strong>Please check the rides</strong> :
+					<strong>You can accept any pending rides</strong> :
 						<input type="button" value="Request a ride" className="rounded border p-2" onClick={this.requestRide.bind(this)} />
 					}
 					</MDBCol>

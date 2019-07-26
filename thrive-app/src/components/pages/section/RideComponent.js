@@ -20,9 +20,12 @@ class RideComponent extends Component {
 	}
 
 	confirm() {
-		RestApi.post(`/ride/${this.state.ride.id}/confirm`)
-		.then(data => {
-			console.log(data);
+		let ride = this.state.ride;
+		RestApi.post(`/ride/${ride.id}/confirm`)
+		.then(ride => {
+			this.setState({
+				ride : ride
+			});
 		}).catch(error => {
 			
 		});
@@ -54,7 +57,7 @@ class RideComponent extends Component {
 							this.state.ride.status==="pending" && user.type==="driver"?
 							<form>
 							<MDBCol>
-							<input type="button" value="CONFIRM" className="rounded border p-2 ml-2 mr-2" onClick={this.confirm.bind(this)} />
+							<input type="button" value="ACCEPT" className="rounded border p-2 ml-2 mr-2" onClick={this.confirm.bind(this)} />
 							</MDBCol>
 							</form>
 							:

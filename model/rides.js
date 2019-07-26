@@ -44,6 +44,7 @@ class Rides extends BaseModel {
             }
             results = await connection.query(`update rides set status='active', driver_id=? where id=?`, [driver_id, id]);
             await connection.commit();
+            results = await this.findById(id);
             return results;
         } catch (error) {
             console.log(error);

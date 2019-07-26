@@ -32,12 +32,6 @@ class ConfirmRide extends ServerRequest {
             }
         }
     }
-
-    makeResponse(data, result, request, response) {
-        return {
-            "message" : "Ride Confirmed"
-        };
-    }
 }
 
 let object = null;
