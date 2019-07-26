@@ -5,7 +5,7 @@
 const ServerRequest = require('api-ext').ServerRequest;
 
 let rides = require('../model/rides').getInstance();
-class UpdateRide extends ServerRequest {
+class ConfirmRide extends ServerRequest {
 
     /**
      * @param opts {{method : string, route : string, schema : JSON, validator : Function}} config 
@@ -35,7 +35,7 @@ class UpdateRide extends ServerRequest {
 
     makeResponse(data, result, request, response) {
         return {
-            "response" : result
+            "message" : "Ride Confirmed"
         };
     }
 }
@@ -44,11 +44,11 @@ let object = null;
 module.exports = {
     /**
      * @param opts {{method : string, route : string, schema : JSON, validator : Function}} config 
-     * @returns {UpdateRide}  
+     * @returns {ConfirmRide}  
      */
     listen(opts) {
         if(object === null) {
-            object = new UpdateRide(opts);
+            object = new ConfirmRide(opts);
         }
         return object;
     }

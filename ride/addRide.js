@@ -19,14 +19,13 @@ class AddRide extends ServerRequest {
         });
     }
 
-    async process(data, request, response) {
-        await rides.addNewRide(data.user.id);
-        return "Ride Added";
+    process(data, request, response) {
+        return rides.addNewRide(data.user.id);
     }
 
     makeResponse(data, result, request, response) {
         return {
-            "message" : result
+            "message" : "Ride Added"
         };
     }
 }

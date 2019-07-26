@@ -4,6 +4,8 @@
 
 const ServerRequest = require('api-ext').ServerRequest;
 
+let rides = require('../model/rides').getInstance();
+
 class ListRides extends ServerRequest {
 
     /**
@@ -19,12 +21,18 @@ class ListRides extends ServerRequest {
     }
 
     process(data, request, response) {
-        return "Hello !! This is a sample response from class 'ListRides'";
+        let type = data.user.type;
+        let id = data.user.id;
+        let query = `select * from rides where cust_id=${id}`;
+        if(type == "driver") {
+            query = `select * from rides where driver_id is NULL or driver_id = ${id}`;
+        }
+        return rides.query(query);
     }
 
     makeResponse(data, result, request, response) {
         return {
-            "response" : result
+            "rides" : result
         };
     }
 }
