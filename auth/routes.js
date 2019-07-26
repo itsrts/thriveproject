@@ -18,3 +18,10 @@ require('./me.js').listen({
     schema: schema['GET_/me'],
     validator: util.validateUser
 });
+
+require('./register.js').listen({
+    method : 'POST',
+    route: '/register',
+    schema: schema['POST_/register'],
+    validator: null
+});

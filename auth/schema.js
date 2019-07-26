@@ -20,7 +20,7 @@ schemas['POST_/login'] = {
         host: { type: "string" },
         url: { type: "string" }
     },
-    required: ["path", "host", "url"]
+    required: ["path", "host", "url", "body"]
 };
 
 
@@ -36,4 +36,24 @@ schemas['GET_/me'] = {
         url: { type: "string" }
     },
     required: ["path", "host", "url"]
+};
+
+
+schemas['POST_/register'] = {
+    $id: "POST_/register", type: "object", properties: {
+        headers: { type: "object" },
+        body: { type: "object", properties: {
+            name : { type : "string" },
+            type : { type : "string", enum : ["driver", "client"] },
+            username : { type : "string" },
+            password : { type : "string" },
+        }, required: ["name", "type", "username", "password"] },
+        queryparams: { type: "object" },
+        pathparams: { type: "object" },
+        cookies: { type: "object" },
+        path: { type: "string" },
+        host: { type: "string" },
+        url: { type: "string" }
+    },
+    required: ["path", "host", "url", "body"]
 };

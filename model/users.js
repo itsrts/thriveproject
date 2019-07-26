@@ -12,6 +12,11 @@ class Users extends BaseModel {
         });
     }
 
+    async register(user) {
+        let query = `insert into users values (null, "${user.name}","${user.type}",md5("${user.password}"),"${user.username}",now(),now());`;
+        return this.query(query);
+    }
+
     async authenticate(username, pwd) {
         // check for the username and pwd match
         let query = `select * from users where username='${username}' and pwd=md5('${pwd}') limit 1`;
