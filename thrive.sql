@@ -70,7 +70,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (6,'driver1','driver','b85aef08608180db9d4ddad38ae40545','driver1','2019-07-26 17:53:53','2019-07-26 17:57:06'),(9,'driver2','driver','d95784faa6597a0253e483e500ced3ee','driver2','2019-07-26 17:56:29','2019-07-26 17:57:06'),(10,'driver3','driver','e44435627359f4c3de71b538cdefdc14','driver3','2019-07-26 17:56:36','2019-07-26 17:57:06'),(11,'driver4','driver','a727098b2711281f6bee057b613ccd5e','driver4','2019-07-26 17:56:41','2019-07-26 17:57:06'),(12,'driver5','driver','bd5f2ceffd2ded0e3717135069b5a960','driver5','2019-07-26 17:56:50','2019-07-26 17:57:06'),(16,'client1','client','a165dd3c2e98d5d607181d0b87a4c66b','client1','2019-07-26 18:07:25','2019-07-26 18:07:25');
+INSERT INTO `users` VALUES (1,'driver1','driver','b85aef08608180db9d4ddad38ae40545','driver1','2019-07-26 17:53:53','2019-07-26 17:57:06'),(2,'driver2','driver','d95784faa6597a0253e483e500ced3ee','driver2','2019-07-26 17:56:29','2019-07-26 17:57:06'),(3,'driver3','driver','e44435627359f4c3de71b538cdefdc14','driver3','2019-07-26 17:56:36','2019-07-26 17:57:06'),(4,'driver4','driver','a727098b2711281f6bee057b613ccd5e','driver4','2019-07-26 17:56:41','2019-07-26 17:57:06'),(5,'driver5','driver','bd5f2ceffd2ded0e3717135069b5a960','driver5','2019-07-26 17:56:50','2019-07-26 17:57:06'),(6,'client1','client','a165dd3c2e98d5d607181d0b87a4c66b','client1','2019-07-26 18:07:25','2019-07-26 18:07:25'),(7,'client2','client','2c66045d4e4a90814ce9280272e510ec','client2','2019-07-26 18:07:28','2019-07-26 18:07:28');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

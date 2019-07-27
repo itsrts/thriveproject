@@ -39,8 +39,7 @@ Usage of api-ext library ( developed by me, https://www.npmjs.com/package/api-ex
  - util    : cron and validate
 
 ## Usage
-The panel supports login, new requests, confirm requests.
-To register either use postmane or curl below
+The panel supports login, new requests, confirm requests. A self contained sql file is added in the project root directory, with 5 drivers and 5 clients, to register either use postman or the curl below
 
 curl -X POST \
   http://localhost:8080/register \
@@ -52,7 +51,6 @@ curl -X POST \
 	"password" : "client1"
 }'
 
-A self contained sql file is added in the project root directory
 
 ## Run
 After cloning, run these commands
