@@ -1,8 +1,8 @@
 # Thrive Driver-Client Project
 
 ## Backend
-Node.js 8.15.0
-MySQL 5.4
+ - Node.js 8.15.0
+ - MySQL 5.4
 
 CREATE TABLE `users` (
   `id` int(12) NOT NULL AUTO_INCREMENT,
@@ -31,14 +31,12 @@ Postman collection URL : https://www.getpostman.com/collections/756e7b3973dfee34
 Usage of api-ext library ( developed by me )
 
 ## Directory Structure
-auth    : all auth APIs
-cache   : cache support
-env     : env variable support
-model   : db models and more
-ride    : all ride APIs
-util    : cron and validate
-
-thrive-app : react source code
+ - auth    : all auth APIs
+ - cache   : cache support
+ - env     : env variable support
+ - model   : db models and more
+ - ride    : all ride APIs
+ - util    : cron and validate
 
 ## Usage
 The panel supports login, new requests, confirm requests.
@@ -56,18 +54,24 @@ curl -X POST \
 
 ## Run
 After cloning, run these commands
-`npm install`
-`node app.js`
+```js
+npm install
+node app.js
+```
 
-# Frontend
-React.js
-localStorage
+# Frontend ( thrive-app ) : react source code
+ - React.js
+ - localStorage
+ - Bootstrap
 
 ## Directory Structure
-util    : configuration and Session Manager
-pages   : login and list pages
-section : components to be re-used
+ - util    : configuration and Session Manager
+ - pages   : login and list pages
+ - section : components to be re-used
 
 ## Run
-`cd thrive-app`
-`npm start`
+```js
+cd thrive-app
+npm install
+npm start
+```
