@@ -28,7 +28,7 @@ CREATE TABLE `rides` (
 
 Postman collection URL : https://www.getpostman.com/collections/756e7b3973dfee34d40a
 
-Usage of api-ext library ( developed by me )
+Usage of api-ext library ( developed by me, https://www.npmjs.com/package/api-ext )
 
 ## Directory Structure
  - auth    : all auth APIs
@@ -51,6 +51,8 @@ curl -X POST \
 	"username" : "client1",
 	"password" : "client1"
 }'
+
+A self contained sql file is added in the project root directory
 
 ## Run
 After cloning, run these commands

@@ -9,7 +9,7 @@ module.exports = {
         "user": "root",
         "password": "paytm@197",
         "host": "localhost",
-        "database": "insurance_db",
+        "database": "thrive_db",
         "poolSize": 10
     }
 }
