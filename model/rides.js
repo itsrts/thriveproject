@@ -40,7 +40,7 @@ class Rides extends BaseModel {
             }
             results = results[0];
             if(results.status != "pending") {
-                throw 'Not Available';
+                throw 'Request no longer available';
             }
             results = await connection.query(`select * from rides where driver_id=? and status='active'`, driver_id);
             if(results && results.length > 0) {
