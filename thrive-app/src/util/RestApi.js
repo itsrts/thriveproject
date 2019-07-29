@@ -56,16 +56,18 @@ const RestApi = {
             redirect: "follow",
             body: JSON.stringify(data),
             credentials: "include"
-        }).then(result => {
+        }).then(async(result) => {
             if(result.status === 401) {
                 SessionManager.logout();
                 window.location.href = "./login";
             }
+            debugger;
             if(result.status !== 200) {
-                throw result.json();
+                let json = await result.json();
+                throw json;
             }
             hideLoader();
-            result = result.json();
+            result = await result.json();
             if(useCache) {
                 cache[url] = result;
             }

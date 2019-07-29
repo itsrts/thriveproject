@@ -8,24 +8,40 @@ class Rides extends BaseModel {
 
     constructor(opts) {
         super({
-            tableName : 'rides'
+            tableName: 'rides'
         });
     }
 
-    addNewRide(cust_id) {
+    async addNewRide(cust_id) {
         // check for the username and pwd match
-        let query = `insert into ${this.tableName} (cust_id) values(${cust_id})`;
-        return this.query(query);
+        let connection;
+        try {
+            connection = await this.getConnection();
+            await connection.beginTransaction();
+            let results = await connection.query(`select * from rides where status='pending'`);
+            if (results && results.length >= 10) {
+                throw 'Rides not available. Try again later';
+            }
+            let query = `insert into ${this.tableName} (cust_id) values(${cust_id})`;
+            await this.query(query);
+            await connection.commit();
+        } catch (error) {
+            console.log(error);
+            if (connection) {
+                connection.rollback();
+            }
+            throw error;
+        }
     }
 
     allRides(data) {
         let type = data.user.type;
         let id = data.user.id;
         let query = `select * from rides where cust_id=${id}`;
-        if(type == "driver") {
+        if (type == "driver") {
             query = `select * from rides where driver_id is NULL or driver_id = ${id}`;
         }
-        query+= ' order by updated_at desc';
+        query += ' order by updated_at desc';
         return this.query(query);
     }
 
@@ -35,15 +51,15 @@ class Rides extends BaseModel {
             connection = await this.getConnection();
             await connection.beginTransaction();
             let results = await connection.query(`select * from rides where id=? for update`, id);
-            if(!results || results.length == 0) {
+            if (!results || results.length == 0) {
                 throw 'Not Available';
             }
             results = results[0];
-            if(results.status != "pending") {
+            if (results.status != "pending") {
                 throw 'Request no longer available';
             }
             results = await connection.query(`select * from rides where driver_id=? and status='active'`, driver_id);
-            if(results && results.length > 0) {
+            if (results && results.length > 0) {
                 throw 'Please complete your existing ride first';
             }
             results = await connection.query(`update rides set status='active', driver_id=? where id=?`, [driver_id, id]);
@@ -52,7 +68,7 @@ class Rides extends BaseModel {
             return results;
         } catch (error) {
             console.log(error);
-            if(connection) {
+            if (connection) {
                 connection.rollback();
             }
             throw error;
@@ -66,7 +82,7 @@ module.exports = {
      * @returns {Rides}  
      */
     getInstance(opts) {
-        if(object === null) {
+        if (object === null) {
             object = new Rides(opts);
         }
         return object;

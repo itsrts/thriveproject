@@ -19,8 +19,15 @@ class AddRide extends ServerRequest {
         });
     }
 
-    process(data, request, response) {
-        return rides.addNewRide(data.user.id);
+    async process(data, request, response) {
+        try {
+            await rides.addNewRide(data.user.id);
+        } catch (error) {
+            throw {
+                code : 409,
+                status : error || "Rides not available. Try again later"
+            }
+        }
     }
 
     makeResponse(data, result, request, response) {

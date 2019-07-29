@@ -54,6 +54,7 @@ class RideListPage extends Component {
 				toast("Ride is requested");
 				this.refreshList();
 			}).catch(error => {
+				debugger;
 				toast(error.status || "Something went wrong");
 				console.log(error);
 			});
