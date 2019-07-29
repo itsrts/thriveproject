@@ -3,10 +3,9 @@
 "use strict";
 
 const ServerRequest = require('api-ext').ServerRequest;
+let users = require('../../model/users').getInstance();
 
-let rides = require('../model/rides').getInstance();
-
-class ListRides extends ServerRequest {
+class Register extends ServerRequest {
 
     /**
      * @param opts {{method : string, route : string, schema : JSON, validator : Function}} config 
@@ -20,14 +19,22 @@ class ListRides extends ServerRequest {
         });
     }
 
-    process(data, request, response) {
-        return rides.allRides(data);
+    async process(data, request, response) {
+        try {
+            return await users.register(data.body);
+        } catch (error) {
+            throw {
+                code : 500,
+                status : 'Something went wrong'
+            }
+        }
     }
 
     makeResponse(data, result, request, response) {
         return {
-            "rides" : result
-        };
+            code : 200,
+            status : 'done'
+        }
     }
 }
 
@@ -35,11 +42,11 @@ let object = null;
 module.exports = {
     /**
      * @param opts {{method : string, route : string, schema : JSON, validator : Function}} config 
-     * @returns {ListRides}  
+     * @returns {Register}  
      */
     listen(opts) {
         if(object === null) {
-            object = new ListRides(opts);
+            object = new Register(opts);
         }
         return object;
     }

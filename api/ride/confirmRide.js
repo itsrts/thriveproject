@@ -4,7 +4,7 @@
 
 const ServerRequest = require('api-ext').ServerRequest;
 
-let rides = require('../model/rides').getInstance();
+let rides = require('../../model/rides').getInstance();
 class ConfirmRide extends ServerRequest {
 
     /**

@@ -3,9 +3,12 @@
 "use strict";
 
 const ServerRequest = require('api-ext').ServerRequest;
-let users = require('../model/users').getInstance();
 
-class Register extends ServerRequest {
+let users = require('../../model/users').getInstance();
+let cache = require('../../cache');
+let uuid = require('uuid/v4');
+
+class Login extends ServerRequest {
 
     /**
      * @param opts {{method : string, route : string, schema : JSON, validator : Function}} config 
@@ -21,32 +24,32 @@ class Register extends ServerRequest {
 
     async process(data, request, response) {
         try {
-            return await users.register(data.body);
+            let user = await users.authenticate(data.body.username, data.body.password);
+            let token = uuid();
+            cache.save(token, user);
+            console.log(token);
+            response.cookie('token', token);
+            return user;
         } catch (error) {
+            console.log(error);
             throw {
-                code : 500,
-                status : 'Something went wrong'
+                code : 401,
+                status: 'Invalid Credentials'
             }
         }
     }
 
-    makeResponse(data, result, request, response) {
-        return {
-            code : 200,
-            status : 'done'
-        }
-    }
 }
 
 let object = null;
 module.exports = {
     /**
      * @param opts {{method : string, route : string, schema : JSON, validator : Function}} config 
-     * @returns {Register}  
+     * @returns {Login}  
      */
     listen(opts) {
         if(object === null) {
-            object = new Register(opts);
+            object = new Login(opts);
         }
         return object;
     }

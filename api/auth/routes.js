@@ -3,7 +3,7 @@
 "use strict";
 
 let schema = require('./schema');
-let util = require('../util');
+let util = require('../../util');
 
 require('./login.js').listen({
     method : 'POST',

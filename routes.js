@@ -3,5 +3,5 @@
 "use strict";
 
 
-require('./auth');
-require('./ride');
+require('./api/auth');
+require('./api/ride');
