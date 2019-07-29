@@ -36,6 +36,11 @@ class Rides extends BaseModel {
         }
     }
 
+    updateRidesForDone() {
+        let query = `update rides set status="done" where status="active" and TIMESTAMPDIFF(MINUTE, updated_at, now()) > 5;`;
+        return this.query(query);
+    }
+
     allRides(data) {
         let type = data.user.type;
         let id = data.user.id;

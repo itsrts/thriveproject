@@ -52,6 +52,11 @@ class Users extends BaseModel {
         }
 
     }
+
+    allUsersWithCoord() {
+        let query = `select * from users where coord_x is not null and coord_y is not null`;
+        return this.query(query);
+    }
 }
 
 let object = null;

@@ -5,6 +5,7 @@
 const ServerRequest = require('api-ext').ServerRequest;
 
 let users = require('../../model/users').getInstance();
+let tracker = require('../../util/locationTracker');
 
 class UpdateCoord extends ServerRequest {
 
@@ -21,6 +22,8 @@ class UpdateCoord extends ServerRequest {
     }
 
     process(data, request, response) {
+        // update location tracker
+        tracker.addUserCoord(data.user, data.body.coord_x, data.body.coord_y);
         return users.updateCoord(data.user.id, data.body.coord_x, data.body.coord_y);
     }
 
