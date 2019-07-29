@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { MDBCol, MDBRow } from 'mdbreact';
 import RideComponent from './section/RideComponent';
+import { toast } from 'react-toastify';
 
 import RestApi from '../../util/RestApi';
 import SessionManager from '../../util/SessionManager';
@@ -33,7 +34,6 @@ class RideListPage extends Component {
 	refreshList() {
 		RestApi.get("/me/rides", false)
 			.then((result) => {
-				console.log(result);
 				this.setState({
 					isLoaded: true,
 					rides: result.rides || []
@@ -51,9 +51,10 @@ class RideListPage extends Component {
 	requestRide() {
 		RestApi.post(`/ride`)
 			.then(data => {
-				console.log(data);
+				toast("Ride is requested");
 				this.refreshList();
 			}).catch(error => {
+				toast(error.status || "Something went wrong");
 				console.log(error);
 			});
 	}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { MDBCard, MDBCol, MDBCardBody, MDBCardText, MDBCardFooter, MDBIcon } from 'mdbreact';
+import { toast } from 'react-toastify';
 import moment from 'moment';
 import RestApi from '../../../util/RestApi';
 import SessionManager from '../../../util/SessionManager';
@@ -23,10 +24,12 @@ class RideComponent extends Component {
 		let ride = this.state.ride;
 		RestApi.post(`/ride/${ride.id}/confirm`)
 		.then(ride => {
+			toast("The ride was confirmed");
 			this.setState({
 				ride : ride
 			});
 		}).catch(error => {
+			toast(error.status || "Something went wrong");
 			console.log(error);
 		});
 	}

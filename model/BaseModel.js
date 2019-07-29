@@ -56,7 +56,6 @@ class BaseModel {
     findById(id) {
         let defer = Q.defer();
         let query = `select * from ${this.tableName} where id = ${id}`;
-        console.log("Executing query", query);
         DB.query(query, (err, result) => {
             if (err) {
                 defer.reject(err);
@@ -69,7 +68,6 @@ class BaseModel {
 
     query(query) {
         let defer = Q.defer();
-        console.log("Executing query", query);
         DB.query(query, (err, result) => {
             if (err) {
                 defer.reject(err);
