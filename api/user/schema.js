@@ -57,3 +57,21 @@ schemas['POST_/register'] = {
     },
     required: ["path", "host", "url", "body"]
 };
+
+
+schemas['POST_/user/coord'] = {
+    $id: "POST_/user/coord", type: "object", properties: {
+        headers: { type: "object" },
+        body: { type: "object", properties: {
+            coord_x : { type : "number" },
+            coord_y : { type : "number" },
+        }, required: ["coord_x", "coord_y"] },
+        queryparams: { type: "object" },
+        pathparams: { type: "object" },
+        cookies: { type: "object" },
+        path: { type: "string" },
+        host: { type: "string" },
+        url: { type: "string" }
+    },
+    required: ["path", "host", "url"]
+};

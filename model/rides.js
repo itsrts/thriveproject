@@ -12,9 +12,11 @@ class Rides extends BaseModel {
         });
     }
 
-    async addNewRide(cust_id) {
+    async addNewRide(cust_id, x, y) {
         // check for the username and pwd match
         let connection;
+        x = x || 'NULL';
+        y = y || 'NULL';
         try {
             connection = await this.getConnection();
             await connection.beginTransaction();
@@ -22,8 +24,8 @@ class Rides extends BaseModel {
             if (results && results.length >= 10) {
                 throw 'Rides not available. Try again later';
             }
-            let query = `insert into ${this.tableName} (cust_id) values(${cust_id})`;
-            await this.query(query);
+            let query = `insert into ${this.tableName} (cust_id, coord_x, coord_y) values(${cust_id}, ${x}, ${y})`;
+            await connection.query(query);
             await connection.commit();
         } catch (error) {
             console.log(error);

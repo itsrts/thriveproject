@@ -30,6 +30,28 @@ class Users extends BaseModel {
         }
         throw 'Not Authorised';
     }
+
+    async updateCoord(id, x, y) {
+        let connection;
+        try {
+            connection = await this.getConnection();
+            await connection.beginTransaction();
+            let results = await connection.query(`select * from users where id=${id} for update`);
+            if (!results || results.length === 0) {
+                throw 'Not Found';
+            }
+            let query = `update users set coord_x=?, coord_y=? where id = ?`;
+            await connection.query(query, [x, y, id]);
+            await connection.commit();
+        } catch (error) {
+            console.log(error);
+            if (connection) {
+                connection.rollback();
+            }
+            throw error;
+        }
+
+    }
 }
 
 let object = null;

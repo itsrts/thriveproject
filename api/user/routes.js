@@ -25,3 +25,10 @@ require('./register.js').listen({
     schema: schema['POST_/register'],
     validator: null
 });
+
+require('./updateCoord.js').listen({
+    method : 'POST',
+    route: '/me/coord',
+    schema: schema['POST_/user/coord'],
+    validator: util.validateUser
+});
