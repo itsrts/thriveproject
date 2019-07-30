@@ -4,6 +4,7 @@
 
 const ServerRequest = require('api-ext').ServerRequest;
 
+let tracker = require('../../util/locationTracker');
 let rides = require('../../model/rides').getInstance();
 
 class ListRides extends ServerRequest {
@@ -20,8 +21,15 @@ class ListRides extends ServerRequest {
         });
     }
 
-    process(data, request, response) {
-        return rides.allRides(data);
+    async process(data, request, response) {
+        let allRides = await rides.allRides(data);
+        // check if the rides are accetable as per the location, if user is driver
+        if(data.user.type == "driver") {
+            allRides = allRides.filter(ride => {
+                return tracker.isDriverMapped(ride.id, data.user.id);
+            });
+        }
+        return allRides;
     }
 
     makeResponse(data, result, request, response) {

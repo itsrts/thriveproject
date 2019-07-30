@@ -2,9 +2,15 @@
 /*jshint multistr: true ,node: true*/
 "use strict";
 
+let config = require('../env').getEnvConfig();
+
 // a 2d array of coordinates with array of users
 // we do a BFS on the array to find the nearest drivers/users
 let coord = [], max_y = 0;
+
+// a map to store the drivers applicable for a ride
+// ride_id : [list of drivers]
+let ridesMapping = {};
 
 /**
  * 
@@ -94,8 +100,25 @@ function findNearest(id, x, y, max) {
     return users;
 }
 
+function addRideMapping(ride) {
+    let drivers = findNearest(ride.cust_id, ride.coord_x, ride.coord_y, config.max_drivers);
+    drivers = drivers.map(driver => {
+        return driver.id;
+    });
+    if(drivers.length > 0) {
+        ridesMapping[ride.id] = drivers;
+    }
+    console.log(JSON.stringify(ridesMapping));
+}
+
+function isDriverMapped(ride_id, driver_id) {
+    return ridesMapping[ride_id] ? ridesMapping[ride_id].indexOf(driver_id)>=0 : true;
+}
+
 module.exports = {
     addUserCoord,
     findNearest,
-    coord
+    coord,
+    addRideMapping,
+    isDriverMapped
 }

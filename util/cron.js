@@ -16,14 +16,18 @@ async function completeRide() {
     }, 5 * 60 * 1000);
 }
 
-async function loadUserLocation() {
+async function loadLocations() {
     let results = await users.allUsersWithCoord();
     results.forEach(user => {
         tracker.addUserCoord(user, user.coord_x, user.coord_y);
     });
     console.log("locations loaded");
     console.log(JSON.stringify(tracker.coord));
+    results = await rides.allRidesWithCoord();
+    results.forEach(ride => {
+        tracker.addRideMapping(ride);
+    });
 }
 
 completeRide();
-loadUserLocation();
+loadLocations();

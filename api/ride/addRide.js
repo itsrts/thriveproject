@@ -4,6 +4,7 @@
 
 const ServerRequest = require('api-ext').ServerRequest;
 
+let tracker = require('../../util/locationTracker');
 let rides = require('../../model/rides').getInstance();
 class AddRide extends ServerRequest {
 
@@ -21,7 +22,10 @@ class AddRide extends ServerRequest {
 
     async process(data, request, response) {
         try {
-            await rides.addNewRide(data.user.id);
+            let ride = await rides.addNewRide(data.user.id, 0, 0); // TODO : get coord from frontend
+            // add ride and driver mapping
+            tracker.addRideMapping(ride);
+            return ride;
         } catch (error) {
             throw {
                 code : 409,
