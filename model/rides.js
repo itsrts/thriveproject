@@ -25,8 +25,10 @@ class Rides extends BaseModel {
                 throw 'Rides not available. Try again later';
             }
             let query = `insert into ${this.tableName} (cust_id, coord_x, coord_y) values(${cust_id}, ${x}, ${y})`;
-            await connection.query(query);
+            let ride = await connection.query(query);
             await connection.commit();
+            ride = await this.findById(ride.insertId);
+            return ride;
         } catch (error) {
             console.log(error);
             if (connection) {
@@ -38,6 +40,11 @@ class Rides extends BaseModel {
 
     updateRidesForDone() {
         let query = `update rides set status="done" where status="active" and TIMESTAMPDIFF(MINUTE, updated_at, now()) > 5;`;
+        return this.query(query);
+    }
+
+    allRidesWithCoord() {
+        let query = `select * from rides where status="pending" and coord_x is not null and coord_y is not null`;
         return this.query(query);
     }
 
