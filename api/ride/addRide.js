@@ -22,7 +22,7 @@ class AddRide extends ServerRequest {
 
     async process(data, request, response) {
         try {
-            let ride = await rides.addNewRide(data.user.id, 0, 0); // TODO : get coord from frontend
+            let ride = await rides.addNewRide(data.user.id, data.body.coord_x, data.body.coord_y); // TODO : get coord from frontend
             // add ride and driver mapping
             tracker.addRideMapping(ride);
             return ride;

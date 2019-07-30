@@ -12,6 +12,8 @@ class RideListPage extends Component {
 		super(props);
 		this.state = {
 			rides: [],
+			coord_x : undefined,
+			coord_y : undefined,
 			pending : true,
 			active : true,
 			done : true
@@ -49,7 +51,11 @@ class RideListPage extends Component {
 	}
 
 	requestRide() {
-		RestApi.post(`/ride`)
+		let obj = {
+			coord_x : this.state.coord_x,
+			coord_y : this.state.coord_y
+		};
+		RestApi.post(`/ride`, obj)
 			.then(data => {
 				toast("Ride is requested");
 				this.refreshList();
@@ -85,6 +91,8 @@ class RideListPage extends Component {
 					:
 					<strong>
 					You may request a ride
+						<input type="number" onChange={(ev) => this.onChange(ev)} id="coord_x" placeholder="x coord" className="rounded border p-2 ml-2 mr-2" />
+						<input type="number" onChange={(ev) => this.onChange(ev)} id="coord_y" placeholder="y coord" className="rounded border p-2 ml-2 mr-2" />
 						<input type="button" value="Request Ride" className="rounded border p-2 ml-2 mr-2" onClick={this.requestRide.bind(this)} />
 						 OR refresh to check updated status
 						<input type="button" value="Refresh List" className="rounded border p-2 ml-2" onClick={this.refreshList.bind(this)} />
