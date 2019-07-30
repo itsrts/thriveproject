@@ -50,6 +50,20 @@ class RideListPage extends Component {
 			);
 	}
 
+	updateCoord() {
+		let obj = {
+			coord_x : this.state.coord_x,
+			coord_y : this.state.coord_y
+		};
+		RestApi.post(`/me/coord`, obj)
+			.then(data => {
+				toast("Coordinates Updated");
+			}).catch(error => {
+				toast(error.status || "Something went wrong");
+				console.log(error);
+			});
+	}
+
 	requestRide() {
 		let obj = {
 			coord_x : this.state.coord_x,
@@ -60,7 +74,6 @@ class RideListPage extends Component {
 				toast("Ride is requested");
 				this.refreshList();
 			}).catch(error => {
-				debugger;
 				toast(error.status || "Something went wrong");
 				console.log(error);
 			});
@@ -87,6 +100,11 @@ class RideListPage extends Component {
 					<strong>
 					You may accept any pending rides
 					<input type="button" value="Refresh List" className="rounded border p-2 ml-2" onClick={this.refreshList.bind(this)} />
+					<br />
+					<br />
+					<input type="number" onChange={(ev) => this.onChange(ev)} id="coord_x" placeholder="x coord" className="rounded border p-2 ml-2 mr-2" />
+					<input type="number" onChange={(ev) => this.onChange(ev)} id="coord_y" placeholder="y coord" className="rounded border p-2 ml-2 mr-2" />
+					<input type="button" value="Update Coordinates" className="rounded border p-2 ml-2 mr-2" onClick={this.updateCoord.bind(this)} />
 					</strong>
 					:
 					<strong>
