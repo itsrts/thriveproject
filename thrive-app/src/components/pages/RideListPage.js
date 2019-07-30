@@ -68,7 +68,7 @@ class RideListPage extends Component {
 		if(ridesHTML.length===0) {
 			ridesHTML = 'No Rides';
 		}
-		let user = SessionManager.getUser();
+		let user = SessionManager.getUser() || {};
 		return (
 			<React.Fragment>
 				<MDBRow className="justify-content-center">
