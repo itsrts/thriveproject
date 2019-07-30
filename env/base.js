@@ -11,5 +11,6 @@ module.exports = {
         "host": "localhost",
         "database": "thrive_db",
         "poolSize": 10
-    }
+    },
+    "max_drivers" : 3
 }
