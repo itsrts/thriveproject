@@ -22,7 +22,6 @@ async function loadLocations() {
         tracker.addUserCoord(user, user.coord_x, user.coord_y);
     });
     console.log("locations loaded");
-    console.log(JSON.stringify(tracker.coord));
     results = await rides.allRidesWithCoord();
     results.forEach(ride => {
         tracker.addRideMapping(ride);

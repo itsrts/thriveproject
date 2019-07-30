@@ -85,7 +85,6 @@ function findNearest(id, x, y, max) {
                     const user = array[index];
                     // if user not himself
                     if(user.id !== id) {
-                        console.log(x, y);
                         users.push(user);
                         if(users.length == max) {
                             return users;
@@ -108,7 +107,7 @@ function addRideMapping(ride) {
     if(drivers.length > 0) {
         ridesMapping[ride.id] = drivers;
     }
-    console.log(JSON.stringify(ridesMapping));
+    console.log("ride added in location mapping");
 }
 
 function isDriverMapped(ride_id, driver_id) {
